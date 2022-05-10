@@ -21,9 +21,10 @@ export class UserRegistrationService {
 
   userLogin(userDetails: any): Observable<any> {
     console.log(userDetails);
-    return this.http.post(apiUrl + 'login', userDetails).pipe( 
-      map(res => this.extractResponseData)
-    )
+    //is this bad not to use .pipe( map(res => res) ) ?
+    //HttpClient automatically returns the response body according to Angular Docs
+    return this.http.post(apiUrl + 'login', userDetails)
+    
   }
 
   getMovie(movieTitle: string): Observable<any> {
