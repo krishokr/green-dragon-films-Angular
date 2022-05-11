@@ -1,0 +1,33 @@
+// #0476D9
+// #F23005
+// #009AF4
+// #8AE3DD
+// #FFD204
+// #000732
+// button color: #212b71
+
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.profile-container {
+    background-color: #F23005;
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-content-container {
+    background-color: #000732;
+    width: fit-content;
+    padding: 10%;
+    box-shadow: 20px 20px #000;
+}
+
+
+
+

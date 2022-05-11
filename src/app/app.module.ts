@@ -15,12 +15,35 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
+import { MovieCardComponent } from './movie-card/movie-card.component';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { GenreComponent } from './genre/genre.component';
+import { DirectorComponent } from './director/director.component';
+import { SynopsisComponent } from './synopsis/synopsis.component';
+import { MainPageComponent } from './main-page/main-page.component';
+import { NavigationComponent } from './navigation/navigation.component';
+import { UpdateEmailFormComponent } from './update-email-form/update-email-form.component';
+import { UpdatePasswordFormComponent } from './update-password-form/update-password-form.component';
+import { UpdateUsernameFormComponent } from './update-username-form/update-username-form.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     UserRegistrationFormComponent,
-    UserLoginFormComponent
+    UserLoginFormComponent,
+    MovieCardComponent,
+    WelcomePageComponent,
+    UserProfileComponent,
+    GenreComponent,
+    DirectorComponent,
+    SynopsisComponent,
+    MainPageComponent,
+    NavigationComponent,
+    UpdateEmailFormComponent,
+    UpdatePasswordFormComponent,
+    UpdateUsernameFormComponent
   ],
   imports: [
     BrowserModule,

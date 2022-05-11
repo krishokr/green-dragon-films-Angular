@@ -50,8 +50,9 @@ export class UserRegistrationService {
     }).pipe(map(res => this.extractResponseData))
   }
 
-  getUser(username: string): Observable<any> {
+  getUser(): Observable<any> {
     const accessToken = localStorage.getItem("token");
+    const username = localStorage.getItem("user");
     return this.http.get(apiUrl + 'users/' + username, {
       headers: {Authorization: `Bearer ${accessToken}`}
     }).pipe(map(res => this.extractResponseData))
@@ -59,9 +60,11 @@ export class UserRegistrationService {
 
   //get favorite movies from user info (use info from getUser)
 
-  addFavoriteMovie(username: string, movieID: string): Observable<any> {
+  addFavoriteMovie(movieID: string): Observable<any> {
     const accessToken = localStorage.getItem('token');
-    return this.http.post(apiUrl + 'users/' + username + '/movies/' + movieID, {
+    const username = localStorage.getItem('user');
+    console.log('adding favorite movie...')
+    return this.http.post(apiUrl + 'users/' + username + '/movies/' + movieID, movieID, {
       headers: {Authorization: `Bearer ${accessToken}`}
     }).pipe(map(res => console.log(res)))
   }
@@ -73,8 +76,9 @@ export class UserRegistrationService {
     }).pipe(map(res => console.log(res)))
   }
 
-  updateUser(username: string, userDetails: any): Observable<any> {
+  updateUser(userDetails: any): Observable<any> {
     const accessToken = localStorage.getItem('token');
+    const username = localStorage.getItem('user');
     return this.http.put(apiUrl + 'users/' + username, userDetails, {
       headers: {Authorization: `Bearer ${accessToken}`}
     }).pipe(map(res => console.log(res)))
@@ -106,12 +110,10 @@ export class UserRegistrationService {
     return this.http.get(apiUrl + 'movies', {
       headers: new HttpHeaders(
         {
-          Authorization: 'Bearer' + token,
+          Authorization: `Bearer ${token}`,
         }
       )
-    }).pipe(
-      map(response => this.extractResponseData)
-    )
+    })
   }
 
   private extractResponseData(res: Response): any {

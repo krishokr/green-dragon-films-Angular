@@ -1,0 +1,58 @@
+// #0476D9
+// #F23005
+// #009AF4
+// #8AE3DD
+// #FFD204
+// #000732
+// button color: #212b71
+
+.main-page {
+    background-color: #000732;
+    height: 100vh;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #F23005;
+    width: fit-content;
+    box-shadow: 20px 20px #000;
+}
+
+.title-container img {
+    z-index: 0;
+    width: 400px;
+    height: 400px;
+}
+
+.button-container {
+    z-index: 1;
+    position: absolute;
+    transform: translateY(100px);
+}
+
+.button-container button {
+    background-color: #212b71;
+}
+
+.button-container button {
+
+}
+
+@media (max-width: 425px) {
+    .title-container img {
+        width: 300px;
+        height: 300px;
+    }
+
+    .button-container {
+        transform: translateY(80px);
+    }
+}

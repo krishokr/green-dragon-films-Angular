@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
 import { MatDialog } from '@angular/material/dialog';
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
-
+import { MovieCardComponent } from './movie-card/movie-card.component';
 
 
 @Component({
@@ -13,14 +13,5 @@ import { UserLoginFormComponent } from './user-login-form/user-login-form.compon
 
 export class AppComponent {
   title = 'green-dragon-films-Angular';
-  constructor(public dialog: MatDialog) { }
-
-  openUserRegistrationDialog(): void {
-      this.dialog.open(UserRegistrationFormComponent, { width: '280px' });
-  }
-
-  openUserLoginDialog(): void {
-    this.dialog.open(UserLoginFormComponent, {width: '280px'});
-  }
 }
 
