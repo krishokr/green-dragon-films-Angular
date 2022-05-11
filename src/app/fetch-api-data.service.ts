@@ -55,7 +55,7 @@ export class UserRegistrationService {
     const username = localStorage.getItem("user");
     return this.http.get(apiUrl + 'users/' + username, {
       headers: {Authorization: `Bearer ${accessToken}`}
-    }).pipe(map(res => this.extractResponseData))
+    })
   }
 
   //get favorite movies from user info (use info from getUser)
@@ -69,8 +69,9 @@ export class UserRegistrationService {
     }).pipe(map(res => console.log(res)))
   }
 
-  deleteFavoriteMovie(username: string, movieID: string): Observable<any> {
+  deleteFavoriteMovie(movieID: string): Observable<any> {
     const accessToken = localStorage.getItem("token");
+    const username = localStorage.getItem('user');
     return this.http.delete(apiUrl + 'users/' + username + '/movies/' + movieID, {
       headers: {Authorization: `Bearer ${accessToken}`}
     }).pipe(map(res => console.log(res)))

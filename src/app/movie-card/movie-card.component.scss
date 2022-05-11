@@ -5,3 +5,32 @@
 // #FFD204
 // #000732
 // button color: #212b71
+
+.card-container {
+    width: 90%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+mat-card {
+    margin: 10px;
+}
+
+img {
+    width: 300px;
+}
+
+@media(max-width: 768px) {
+    .card-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media(max-width: 425px) {
+    .card-container {
+        grid-template-columns: 1fr;
+    }
+}

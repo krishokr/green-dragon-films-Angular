@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserRegistrationService } from '../fetch-api-data.service';
 import { Router } from '@angular/router';
-import { UserProfileComponent } from '../user-profile/user-profile.component';
 import { MatDialog } from '@angular/material/dialog';
 
 import { GenreComponent } from '../genre/genre.component';
@@ -19,7 +18,7 @@ import { SynopsisComponent } from '../synopsis/synopsis.component';
 export class MovieCardComponent implements OnInit{
 
   movies: any[] = [];
-  // user: {Username: string, Password: string, Email: string, FavoriteMovies: [], Birthday: string} = {};
+  user: any = {};
 
   constructor(
     public UserRegistration: UserRegistrationService,
@@ -29,6 +28,7 @@ export class MovieCardComponent implements OnInit{
 
   ngOnInit(): void {
     this.getMovies();
+    this.getUser();
   }
 
   getMovies(): void {
@@ -37,10 +37,6 @@ export class MovieCardComponent implements OnInit{
       console.log(this.movies);
       return this.movies;
     })
-  }
-
-  navigateUserProfile(): void {
-    this.router.navigate(['profile'])
   }
 
   openGenreDialog(genre: object): void {
@@ -67,31 +63,57 @@ export class MovieCardComponent implements OnInit{
     })
   }
 
-  //Adding a Favorite Movie
-  // getUser(): object {   
-  //   return this.UserRegistration.getUser().subscribe((result: any) => {
-  //     this.user = result.data;
-  //     console.log(this.user);
-  //   });
-  // }
+  // Adding a Favorite Movie
+  getUser(): void {   
+    this.UserRegistration.getUser().subscribe((result: any) => {
+      this.user = result;
+      console.log(this.user);
+    });
+  }
+  
 
-  // duplicateFavoriteMovie(id: string) {
+  duplicateFavoriteMovie(id: string): boolean {
+    this.getUser();
+    if (this.user.FavoriteMovies.includes(id)) {
 
-  //   if (this.user.FavoriteMovies.includes(id)) {
-  //       return true;
-  //   }
-  //   return false
-  // }
+        return true;
+    }
+    return false
+  }
+
 
   addFavoriteMovie(id: string): void {   
-    console.log(id);
-    // if (!this.duplicateFavoriteMovie(id)) {
+    
+    if (!this.duplicateFavoriteMovie(id)) {
+      console.log(this.duplicateFavoriteMovie(id));
       this.UserRegistration.addFavoriteMovie(id).subscribe(
         result => console.log(result)
       )
-    // }
-    // return console.log('something went wrong...');   
+    } else {
+      // this.status = 'Duplicate movie cannot be added.'
+      console.log('Duplicate movie - cannot be added.')
+    }
   }
   
+
+  deleteFavoriteMovie(id: string): void {
+
+    this.getUser();
+
+    if (this.user.FavoriteMovies.includes(id)) {
+      this.UserRegistration.deleteFavoriteMovie(id).subscribe(
+        result => {
+          console.log(result);
+          console.log('Movie has been deleted')
+        }
+      )
+    }
+
+    this.getUser();
+    console.log('Favorite movies: ')
+    console.log(this.user.FavoriteMovies);
+  }
+
+
 
 }

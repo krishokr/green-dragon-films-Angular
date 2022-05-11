@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MovieCardComponent } from '../movie-card/movie-card.component';
+import { NgModule } from '@angular/core';
+
+
 
 @Component({
   selector: 'app-main-page',
@@ -8,7 +11,7 @@ import { MovieCardComponent } from '../movie-card/movie-card.component';
   styleUrls: ['./main-page.component.scss']
 })
 export class MainPageComponent implements OnInit {
-
+  
   constructor(public router: Router) { }
 
   ngOnInit(): void {
@@ -17,4 +20,6 @@ export class MainPageComponent implements OnInit {
   goToAccount(): void {
     this.router.navigate(['profile'])
   }
+
+  
 }

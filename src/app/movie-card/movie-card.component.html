@@ -1,12 +1,11 @@
-<div class="card-container" style="display: flex;">
-    <button mat-raised-button (click)="navigateUserProfile()"  color="primary">Account</button>
+<div class="card-container">
    
     <mat-card *ngFor="let movie of movies;" style="flex: 1 1 auto;">
         <mat-card-header>
         <mat-card-title>{{movie.Title}}</mat-card-title>
             <mat-card-subtitle>Directed by: {{movie.Director.Name}}</mat-card-subtitle>
         </mat-card-header>
-        <img style="width: 200px" src="../assets/img/{{movie.ImagePath}}" alt= {{movie.Title}} />
+        <img src="../assets/img/{{movie.ImagePath}}" alt= {{movie.Title}} />
         <mat-card-actions>
             <button
                 mat-button
@@ -36,6 +35,13 @@
                 (click)="addFavoriteMovie(movie._id)"
             >
                 Add to Favorites
+            </button>
+            <button
+                mat-button
+                color="primary"
+                (click)="deleteFavoriteMovie(movie._id)"
+            >
+                Delete Movie
             </button>
             <!-- <mat-icon>favorite_border</mat-icon> -->
         </mat-card-actions>
