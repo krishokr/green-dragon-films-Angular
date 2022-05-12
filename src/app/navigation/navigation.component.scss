@@ -1,3 +1,11 @@
+// #0476D9
+// #F23005
+// #009AF4
+// #8AE3DD
+// #FFD204
+// #000732
+// button color: #212b71
+
 button{
     margin: 1%;
 }
@@ -5,5 +13,60 @@ button{
 .navigation-container {
     display: flex;
     justify-content: flex-end;
+    height: 100px;
+    width: 100%;
+}
+
+img {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    left: 0;
+    top: -6%;
+    // background-color: #F23005;
+}
+
+.navbar-container {
+    display: flex;
+    color: #fff;
+    align-items: center;
+    justify-content: flex-end;
+    width: 80%;
+}
+
+.navbar-container a {
+    color: #000732;
+    font-size: 1.3em;
+    padding: 0 2%;
+    font-family: Ubuntu;
+ 
+    transition: 0.5s;
+}
+
+.navbar-container a:hover {
+    color: #8AE3DD;
+    cursor: pointer;
+}
+
+.account-logout-container {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.account-logout-container button {
+   margin: 5%;
+   transition: 0.5s;
+}
+
+.account-logout-container button:hover{
+    background-color: #8AE3DD;
+}
+
+@media(max-width: 768px) {
+    .account-logout-container {
+        flex-direction: column;
+    }
 }
 

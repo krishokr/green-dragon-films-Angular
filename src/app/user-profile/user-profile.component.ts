@@ -1,8 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { UserRegistrationService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { UpdateEmailFormComponent } from '../update-email-form/update-email-form.component';
+import { UpdatePasswordFormComponent } from '../update-password-form/update-password-form.component';
+import { UpdateUsernameFormComponent } from '../update-username-form/update-username-form.component';
 
 
 //need to get user info
@@ -14,14 +17,12 @@ import { Router } from '@angular/router';
 })
 export class UserProfileComponent implements OnInit {
 
-  username: string = '';
-  email: string = '';
-  birthday: string = '';
-  password: string = '';
+  userDetails: any = {};
 
-  constructor(private router: Router, private userRegistrationService: UserRegistrationService) { }
+  constructor(private router: Router, private userRegistrationService: UserRegistrationService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.getUserInfo();
   }
 
   navigateHome(): void {
@@ -31,21 +32,45 @@ export class UserProfileComponent implements OnInit {
   getUserInfo(): void {
     this.userRegistrationService.getUser().subscribe(
       res => {
-        this.username = res.data.Username;
-        this.email = res.data.Email;
-        this.birthday = res.data.Birth;
+        this.userDetails = res;
       }
     )
   }
 
-  updateUserInfo(): void {
-
-    let userData = {Username: this.username, Email: this.email, Password: this.password, }
-
-    this.userRegistrationService.updateUser(userData).subscribe(
-      res => {
-
-      }
-    )
+  openUpdateEmailDialog(): void {
+   
+    this.dialog.open(UpdateEmailFormComponent, {
+      width: '280px',
+      data: this.userDetails
+    });
   }
+
+  openUpdatePasswordDialog(): void {
+      this.dialog.open(UpdatePasswordFormComponent, {
+        width: '280px',
+        data: this.userDetails
+      });
+    }
+
+    openUpdateUsernameDialog(): void {
+      this.dialog.open(UpdateUsernameFormComponent, {
+        width: '280px',
+        data: this.userDetails
+      });
+    }
+  
+
+  
+  
+
+  // updateUserInfo(): void {
+
+    
+
+  //   this.userRegistrationService.updateUser(userData).subscribe(
+  //     res => {
+
+  //     }
+  //   )
+  // }
 }

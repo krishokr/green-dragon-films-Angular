@@ -1,8 +1,22 @@
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400&display=swap');
+        </style>
+
 <div class="navigation-container">
 
-        <!-- <img style="width: 100px" src="../assets/Green_Dragon_Films.png" /> -->
-        <button mat-raised-button (click)="logout()">Logout</button>
-        <button mat-raised-button (click)="goToAccount()">Account</button>
+        <img src="../assets/Green_Dragon_Films.png" />
+        <div class="navbar-container">
+                <a (click)="goToHome()">Home</a>
+                <a (click)="goToFavorites()">Favorite Movies</a>
+        </div>
 
+        <div class="account-logout-container">
+
+                <button mat-raised-button (click)="logout()">Logout</button>
+                <button mat-raised-button (click)="goToAccount()">Account</button>
+
+        </div>
+        
+        
     
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { UserRegistrationService } from '../fetch-api-data.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -18,7 +18,11 @@ import { SynopsisComponent } from '../synopsis/synopsis.component';
 export class MovieCardComponent implements OnInit{
 
   movies: any[] = [];
+  allMovies: any[] = [];
   user: any = {};
+  userFavoriteMovies: any = {};
+
+  @Input() favoriteView: boolean = false;
 
   constructor(
     public UserRegistration: UserRegistrationService,
@@ -27,16 +31,53 @@ export class MovieCardComponent implements OnInit{
   ) { }
 
   ngOnInit(): void {
+    this.favoriteView ? this.populateFavoriteMoviesInMoviesArray() : this.initializeApp();
+  }
+
+  initializeApp() {
+    console.log('All movies view')
     this.getMovies();
     this.getUser();
   }
 
-  getMovies(): void {
-    this.UserRegistration.getAllMovies().subscribe( (resp: any) => {
-      this.movies = resp;
-      console.log(this.movies);
-      return this.movies;
+
+  determineInitialFavorites() {
+    console.log('inside determineFavorites')
+    console.log(this.user);
+    console.log(this.movies);
+    this.movies.forEach(movie => {
+      let id = movie._id;
+      this.user.FavoriteMovies.includes(id) ? this.userFavoriteMovies[id] = true : this.userFavoriteMovies = false;
     })
+    console.log('User Favorite Movies: ')
+    console.log(Object.keys(this.userFavoriteMovies))
+  }
+
+  getMovies(): void {
+      this.UserRegistration.getAllMovies().subscribe( (resp: any[]) => {
+        if (this.favoriteView) {
+          console.log('populating movies with favorites...')
+          console.log(this.user.FavoriteMovies);
+          let collectFavorites: any[] = [];
+          
+          this.user.FavoriteMovies.forEach((id: string) => {
+            collectFavorites.push(resp.find(movie => movie._id === id));
+          })
+        
+          this.movies = collectFavorites;
+          console.log(this.movies);
+        } else {
+          this.movies = resp
+        }
+        console.log(this.movies);
+        return this.movies;
+      })
+  }
+
+  async populateFavoriteMoviesInMoviesArray() {
+    console.log('Favorite movies')
+    await this.getUser();
+    await this.getMovies();
   }
 
   openGenreDialog(genre: object): void {
@@ -83,7 +124,7 @@ export class MovieCardComponent implements OnInit{
 
 
   addFavoriteMovie(id: string): void {   
-    
+
     if (!this.duplicateFavoriteMovie(id)) {
       console.log(this.duplicateFavoriteMovie(id));
       this.UserRegistration.addFavoriteMovie(id).subscribe(
@@ -101,6 +142,7 @@ export class MovieCardComponent implements OnInit{
     this.getUser();
 
     if (this.user.FavoriteMovies.includes(id)) {
+
       this.UserRegistration.deleteFavoriteMovie(id).subscribe(
         result => {
           console.log(result);
@@ -108,12 +150,7 @@ export class MovieCardComponent implements OnInit{
         }
       )
     }
-
-    this.getUser();
-    console.log('Favorite movies: ')
-    console.log(this.user.FavoriteMovies);
+    this.getUser()
   }
-
-
 
 }

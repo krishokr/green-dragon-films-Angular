@@ -6,28 +6,35 @@
 // #000732
 // button color: #212b71
 
-header {
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
 .profile-container {
     background-color: #F23005;
     color: #fff;
     height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .profile-content-container {
+
+    margin-left: auto;
+    margin-right: auto;
     background-color: #000732;
     width: fit-content;
-    padding: 10%;
+    padding: 5%;
     box-shadow: 20px 20px #000;
 }
 
+.button-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.button-container button {
+    margin: 5% 0;
+    transition: 0.5s;
+}
+
+.button-container button:hover {
+    background-color: #8AE3DD;
+}
 
 
 

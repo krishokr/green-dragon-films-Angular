@@ -12,6 +12,7 @@ import { NgModule } from '@angular/core';
 })
 export class MainPageComponent implements OnInit {
   
+
   constructor(public router: Router) { }
 
   ngOnInit(): void {

@@ -1,1 +1,29 @@
-<p>update-email-form works!</p>
+<mat-card>
+    <mat-card-header>
+      <mat-card-title>Update Email</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form>
+        
+          <mat-form-field>
+          <input
+            matInput
+            [(ngModel)]="Email"
+            type = "email"
+            placeholder="Email"
+            name="Email"
+          >
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button
+          mat-raised-button
+          (click)="submitEmail()"
+          color="primary"
+        >
+          Submit
+        </button>
+    </mat-card-actions>
+  </mat-card>
+ 

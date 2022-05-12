@@ -26,6 +26,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { UpdateEmailFormComponent } from './update-email-form/update-email-form.component';
 import { UpdatePasswordFormComponent } from './update-password-form/update-password-form.component';
 import { UpdateUsernameFormComponent } from './update-username-form/update-username-form.component';
+import { FavoriteMoviesComponent } from './favorite-movies/favorite-movies.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { UpdateUsernameFormComponent } from './update-username-form/update-usern
     NavigationComponent,
     UpdateEmailFormComponent,
     UpdatePasswordFormComponent,
-    UpdateUsernameFormComponent
+    UpdateUsernameFormComponent,
+    FavoriteMoviesComponent
   ],
   imports: [
     BrowserModule,

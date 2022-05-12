@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 
 const apiUrl = 'https://greendragonflix.herokuapp.com/';
 
@@ -16,20 +16,20 @@ export class UserRegistrationService {
 
   userRegistration(userDetails: any): Observable<any> {
     console.log(userDetails);
-    return this.http.post(apiUrl + 'users', userDetails).pipe();
+    return this.http.post(apiUrl + 'users', userDetails).pipe(catchError(this.handleError));
   }
 
   userLogin(userDetails: any): Observable<any> {
     console.log(userDetails);
     //is this bad not to use .pipe( map(res => res) ) ?
     //HttpClient automatically returns the response body according to Angular Docs
-    return this.http.post(apiUrl + 'login', userDetails)
+    return this.http.post(apiUrl + 'login', userDetails).pipe(catchError(this.handleError))
     
   }
 
   getMovie(movieTitle: string): Observable<any> {
       let accessToken = localStorage.getItem('token');
-      return this.http.get(apiUrl + 'movies' + movieTitle, {
+      return this.http.get(apiUrl + '/movies/' + movieTitle, {
         headers: {Authorization: `Bearer ${accessToken}`}
       }).pipe(map(res => this.extractResponseData))
     
@@ -66,7 +66,7 @@ export class UserRegistrationService {
     console.log('adding favorite movie...')
     return this.http.post(apiUrl + 'users/' + username + '/movies/' + movieID, movieID, {
       headers: {Authorization: `Bearer ${accessToken}`}
-    }).pipe(map(res => console.log(res)))
+    }).pipe(catchError(this.handleError))
   }
 
   deleteFavoriteMovie(movieID: string): Observable<any> {
@@ -74,7 +74,7 @@ export class UserRegistrationService {
     const username = localStorage.getItem('user');
     return this.http.delete(apiUrl + 'users/' + username + '/movies/' + movieID, {
       headers: {Authorization: `Bearer ${accessToken}`}
-    }).pipe(map(res => console.log(res)))
+    }).pipe(catchError(this.handleError))
   }
 
   updateUser(userDetails: any): Observable<any> {
@@ -82,7 +82,7 @@ export class UserRegistrationService {
     const username = localStorage.getItem('user');
     return this.http.put(apiUrl + 'users/' + username, userDetails, {
       headers: {Authorization: `Bearer ${accessToken}`}
-    }).pipe(map(res => console.log(res)))
+    }).pipe(catchError(this.handleError))
     
   }
 
@@ -90,7 +90,7 @@ export class UserRegistrationService {
     const accessToken = localStorage.getItem('token');
     return this.http.put(apiUrl + 'users/' + username, {
       headers: {Authorization: `Bearer ${accessToken}`}
-    }).pipe(map(res => console.log(res)))
+    }).pipe(catchError(this.handleError))
   }
 
   handleError(error: HttpErrorResponse): any {

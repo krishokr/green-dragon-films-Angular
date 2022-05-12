@@ -32,6 +32,7 @@
             <button
                 mat-button
                 color="primary"
+                *ngIf="!this.user.FavoriteMovies.includes(movie._id)"
                 (click)="addFavoriteMovie(movie._id)"
             >
                 Add to Favorites
@@ -39,6 +40,7 @@
             <button
                 mat-button
                 color="primary"
+                *ngIf="this.user.FavoriteMovies.includes(movie._id)"
                 (click)="deleteFavoriteMovie(movie._id)"
             >
                 Delete Movie
