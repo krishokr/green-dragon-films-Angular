@@ -30,6 +30,9 @@ export class MovieCardComponent implements OnInit{
     public dialog: MatDialog,
   ) { }
 
+  /**
+   * component is used
+   */
   ngOnInit(): void {
     this.favoriteView ? this.populateFavoriteMoviesInMoviesArray() : this.initializeApp();
   }
@@ -136,6 +139,9 @@ export class MovieCardComponent implements OnInit{
     }
   }
   
+  viewMovie(title: string): void {
+    this.router.navigate([`movies/${title}`]);
+  }
 
   deleteFavoriteMovie(id: string): void {
 

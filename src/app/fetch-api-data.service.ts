@@ -27,11 +27,11 @@ export class UserRegistrationService {
     
   }
 
-  getMovie(movieTitle: string): Observable<any> {
+  getMovie(movieTitle: string | null): Observable<any> {
       let accessToken = localStorage.getItem('token');
-      return this.http.get(apiUrl + '/movies/' + movieTitle, {
+      return this.http.get(apiUrl + 'movies/' + movieTitle, {
         headers: {Authorization: `Bearer ${accessToken}`}
-      }).pipe(map(res => this.extractResponseData))
+      }).pipe(catchError(this.handleError))
     
   }
 

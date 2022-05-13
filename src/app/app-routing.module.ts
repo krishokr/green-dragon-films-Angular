@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { FavoriteMoviesComponent } from './favorite-movies/favorite-movies.component';
+import { SingleMoviePageComponent } from './single-movie-page/single-movie-page.component';
 
 
 const routes: Routes = [
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path: 'movies', component: MainPageComponent},
   {path: '', redirectTo: 'welcome', pathMatch: 'prefix'},
   {path: 'profile', component: UserProfileComponent},
-  {path: 'favorites', component: FavoriteMoviesComponent}
+  {path: 'favorites', component: FavoriteMoviesComponent},
+  {path: 'movies/:MovieTitle', component: SingleMoviePageComponent}
 ];
 
 @NgModule({

@@ -27,6 +27,7 @@ import { UpdateEmailFormComponent } from './update-email-form/update-email-form.
 import { UpdatePasswordFormComponent } from './update-password-form/update-password-form.component';
 import { UpdateUsernameFormComponent } from './update-username-form/update-username-form.component';
 import { FavoriteMoviesComponent } from './favorite-movies/favorite-movies.component';
+import { SingleMoviePageComponent } from './single-movie-page/single-movie-page.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { FavoriteMoviesComponent } from './favorite-movies/favorite-movies.compo
     UpdateEmailFormComponent,
     UpdatePasswordFormComponent,
     UpdateUsernameFormComponent,
-    FavoriteMoviesComponent
+    FavoriteMoviesComponent,
+    SingleMoviePageComponent
   ],
   imports: [
     BrowserModule,
