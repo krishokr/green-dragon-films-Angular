@@ -31,7 +31,7 @@ Credits Lead Developer and Designer: Kristofer Hokr
 
 Development Environment Requirement and Libraries
 
-Angular v13.3 or higher
+Angular v13.3.5 or higher
 TypeScript v4.6.2 or higher
 Material UI v13.3 or higher
 
