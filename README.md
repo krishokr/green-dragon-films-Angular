@@ -2,26 +2,36 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.5.
 
-## Development server
+Overview
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Green Dragon Films - Angular is a frontend application that uses Angular and TypeScript to allow users to login and fan over their favorite action and adventure movies. They can view details about a movie's genre, director, and description, as well as store it in their account as a favorite.
 
-## Code scaffolding
+Purpose & Context
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Green Dragon Films - Angular is a personal project I built to test my Angular and TypeScript skills I learned as part of a web development course called Career Foundry. It's the Angular version of the frontend application that integrates an API I built using Express and Node. I also built a React version, which can be seen on my portfolio site.
 
-## Build
+Objective
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+The aim of this project was to build an Angular application I can add to my professional portfolio. The problem I wanted to solve was to build a frontend for my Movies API using Angular and TypeScript.
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Approach
 
-## Running end-to-end tests
+Server-Side
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+My Movies API uses MongoDB to store information about movies and users. The API stores data using JSON format and is accessed through https://greendragonflix.herokuapp.com/.
 
-## Further help
+Client-Side
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+The client-side of the application is the main focus of the project using Angular and TypeScript. Initially, users are prompted to either login or register using their username and password. Once the user is validated, they are redirected to the main page with displays movie cards that allow the user to view clickable information on their favorite movies such as the genre, director, and description. On clicking the card, the user is directed to a single movie page where they can view more information about their favorite movies. Users can like a movie, which will add it to their favorites for them to view on the favorite movies page. From the Account button, users are able to update their personal information such as their username, password, and email.
+
+Credits Lead Developer and Designer: Kristofer Hokr
+
+                                -------------     
+
+Development Environment Requirement and Libraries
+
+Angular v13.3 or higher
+TypeScript v4.6.2 or higher
+Material UI v13.3 or higher
+
