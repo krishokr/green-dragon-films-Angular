@@ -26,14 +26,12 @@ export class UserLoginFormComponent implements OnInit {
   }
 
   loginUser(): void {
-    this.router.navigate(['movies']);
+    localStorage.setItem('user', this.userData.Username);
     this.userRegistrationService.userLogin(this.userData).subscribe(
       result => {
-        this.dialogRef.close(); 
-        console.log(result)
-        localStorage.setItem('user', result.user.Username);
+        // localStorage.setItem('user', result.user.Username);
         localStorage.setItem('token', result.token);
-        
+        this.dialogRef.close(); 
         this.snackBar.open(result, 'OK', {
            duration: 2000
         });
@@ -43,6 +41,7 @@ export class UserLoginFormComponent implements OnInit {
            duration: 2000
          });
        });
+       this.router.navigate(['movies']);
   }
 
 }
