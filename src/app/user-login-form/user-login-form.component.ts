@@ -32,6 +32,7 @@ export class UserLoginFormComponent implements OnInit {
         // localStorage.setItem('user', result.user.Username);
         localStorage.setItem('token', result.token);
         this.dialogRef.close(); 
+        this.router.navigate(['movies']);
         this.snackBar.open(result, 'OK', {
            duration: 2000
         });
@@ -41,7 +42,7 @@ export class UserLoginFormComponent implements OnInit {
            duration: 2000
          });
        });
-       this.router.navigate(['movies']);
+       
   }
 
 }
