@@ -12,7 +12,9 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 })
 export class UpdatePasswordFormComponent implements OnInit {
 
-  @Input() Password: string = '';
+  @Input() Password: string = ''; PasswordValidation: string = '';
+
+  error: string = '';
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: {Email: string, Username: string, Password: string, Birthday: string },
   public userRegistrationService: UserRegistrationService,
@@ -25,12 +27,17 @@ export class UpdatePasswordFormComponent implements OnInit {
 
   submit() {
 
-    this.data.Password =  this.Password;
-    console.log(this.data)
+    if (this.Password === this.PasswordValidation) {
+      this.data.Password =  this.Password;
+      console.log(this.data)
+  
+      this.userRegistrationService.updateUser(this.data).subscribe(
+        res => console.log(res)
+      )
+      return this.dialogRef.close()
+    } 
 
-    this.userRegistrationService.updateUser(this.data).subscribe(
-      res => console.log(res)
-    )
+    this.error = 'Passwords do not match.'
 
   }
 

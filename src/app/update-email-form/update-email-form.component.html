@@ -8,10 +8,19 @@
           <mat-form-field>
           <input
             matInput
-            [(ngModel)]="Email"
+            [(ngModel)]="this.userData.Email"
             type = "email"
             placeholder="Email"
             name="Email"
+          >
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            [(ngModel)]="this.userData.Password"
+            type = "password"
+            placeholder="Your Current Password"
+            name="Password"
           >
         </mat-form-field>
       </form>

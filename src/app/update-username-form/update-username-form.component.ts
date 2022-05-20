@@ -13,7 +13,7 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 })
 export class UpdateUsernameFormComponent implements OnInit {
 
-  @Input() Username: string = '';
+  @Input() userData = {Username: '', Password: ''}
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: {Email: string, Username: string, Password: string, Birthday: string },
   public userRegistrationService: UserRegistrationService,
@@ -26,8 +26,8 @@ export class UpdateUsernameFormComponent implements OnInit {
 
   submit() {
 
-    this.data.Username =  this.Username;
-    console.log(this.data)
+    this.data.Username =  this.userData.Username;
+    this.data.Password = this.userData.Password;
 
     this.userRegistrationService.updateUser(this.data).subscribe(
       res => console.log(res)

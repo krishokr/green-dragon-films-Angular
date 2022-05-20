@@ -21,6 +21,12 @@ mat-card {
 
 img {
     width: 100%;
+    transition: 0.5s;
+}
+
+img:hover {
+    cursor: pointer;
+    opacity: 0.5;
 }
 
 @media(max-width: 768px) {
